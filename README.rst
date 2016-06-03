@@ -1,9 +1,10 @@
 scopelist
-===============================
+=========
 
 |build-status| |license|
 
-A container class for authorization scopes
+*scopelist* exposes the ``ScopeList`` class, a container type intended to
+simplify checking authorization scope.
 
 Installation
 ------------
@@ -19,12 +20,16 @@ directly from source, clone the git repository and run the standard
 Dependencies
 ~~~~~~~~~~~~
 
-* Python 2.7+ (including Python 3, via 2to3)
+* Python 3.2+ (including Python 3, via 2to3)
 
 Usage
 -----
 
-* TODO
+.. include:: scopelist.py
+   :start-after: """Helper class for checking scope items.
+   :end-before: """
+
+.. That's the only docstring in the module, so we should be good.
 
 .. |build-status| image:: https://travis-ci.org/te-je/scopelist.svg?branch=develop
     :target: https://travis-ci.org/te-je/scopelist
@@ -32,6 +37,6 @@ Usage
     :scale: 100%
 
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://raw.githubusercontent.com/te-je/scopelist/develop/LICENSE.txt
+    :target: https://raw.githubusercontent.com/te-je/scopelist/develop/LICENSE.rst
     :alt: License
     :scale: 100%
