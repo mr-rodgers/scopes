@@ -1,6 +1,6 @@
 language: python
 python:
-      "2.7"
+    - "2.7"
     - "3.2"
     - "3.3"
     - "3.4"
@@ -10,6 +10,7 @@ python:
     - "nightly"
 install:
     - "pip install tox"
+    - "pip install coveralls"
 script: 
     - "tox -e py -e flake8"
 matrix:
@@ -18,3 +19,5 @@ matrix:
         - python: nightly
         - python: pypy
         - python: pypy3
+after_success:
+    coveralls
