@@ -121,5 +121,5 @@ True
     :scale: 100%
 
 .. |pypi| image:: https://img.shields.io/pypi/v/nine.svg?maxAge=2592000
-    :target:
+    :target: https://pypi.python.org/pypi/scopelist
     :scale: 100%
