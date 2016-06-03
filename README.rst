@@ -1,7 +1,7 @@
 scopelist
 =========
 
-|build-status| |license|
+|build-status| |license| |pypi|
 
 *scopelist* exposes the ``ScopeList`` class, a container type intended to
 simplify checking authorization scope.
@@ -118,4 +118,8 @@ True
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
     :target: https://raw.githubusercontent.com/te-je/scopelist/develop/LICENSE.rst
     :alt: License
+    :scale: 100%
+
+.. |pypi| image:: https://img.shields.io/pypi/v/nine.svg?maxAge=2592000
+    :target:
     :scale: 100%
