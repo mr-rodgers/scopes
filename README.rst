@@ -20,7 +20,7 @@ directly from source, clone the git repository and run the standard
 Dependencies
 ~~~~~~~~~~~~
 
-* Python 3.2+ (including Python 3, via 2to3)
+* Python 2.7, 3.2+
 
 Usage
 -----

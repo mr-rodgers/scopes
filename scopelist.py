@@ -1,5 +1,10 @@
+import sys
+
 from collections import namedtuple
-from collections.abc import Sequence
+if sys.version_info < (3, 0):
+    from collections import Sequence
+else:
+    from collections.abc import Sequence
 
 
 __all__ = ['ScopeList']
@@ -12,10 +17,11 @@ class _ScopeItem(namedtuple("ScopeItem", "nodes modes")):
         if not mode_part:
             mode_part = default_mode
 
-        return super().__new__(cls, node_part.split(child_sep), set(mode_part))
+        return super(_ScopeItem, cls).__new__(
+            cls, node_part.split(child_sep), set(mode_part))
 
     def as_string(self, child_sep, mode_sep, default_mode):
-        if not self.modes or self.modes == {default_mode}:
+        if not self.modes or self.modes == set(default_mode):
             return child_sep.join(self.nodes)
 
         else:
@@ -105,7 +111,7 @@ True
 
     """
 
-    def __init__(self, items, *,
+    def __init__(self, items,
                  child_sep="/", mode_sep="+", default_mode="r"):
         self.child_sep = child_sep
         self.mode_sep = mode_sep
