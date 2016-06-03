@@ -120,7 +120,7 @@ True
     :alt: License
     :scale: 100%
 
-.. |pypi| image:: https://img.shields.io/pypi/v/nine.svg?maxAge=2592000
+.. |pypi| image:: https://img.shields.io/pypi/v/scopelist.svg?maxAge=2592000
     :target: https://pypi.python.org/pypi/scopelist
     :scale: 100%
 
