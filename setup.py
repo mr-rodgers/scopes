@@ -10,7 +10,7 @@ HERE = path.abspath(path.dirname(__file__))
 
 def read(relpath):
     with open(path.join(HERE, relpath), encoding="utf-8") as f:
-        return f.read()
+        return f.read().replace("\r\n", "\n")
 
 setup(
     name='scopelist',
