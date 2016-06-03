@@ -9,9 +9,9 @@ simplify checking authorization scope.
 Installation
 ------------
 
-You can install scopelist directly from GitHub::
+You can install scopelist from PyPi::
 
-    > pip install git+https://github.com/te-je/scopelist
+    > pip install scopelist
 
 That should install all the dependencies for you. If you want to install
 directly from source, clone the git repository and run the standard
