@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from codecs import open
 from setuptools import setup, find_packages
 from os import path
 
@@ -15,7 +16,11 @@ setup(
     name='scopelist',
 
     description='A container class for authorization scopes',
-    long_description=read("README.rst") + "License\n-------\n\n" + read("LICENSE.rst"),
+    long_description="\n\n".join([
+        read("README.rst"),
+        "License\n-------",
+        read("LICENSE.rst")
+    ]),
 
     url='https://github.com/te-je/scopelist',
 
@@ -40,18 +45,16 @@ setup(
     ],
 
     setup_requires=['setuptools_scm'],
-    use_scm_version={"write_to": "scopelist/VERSION.txt"},
+    use_scm_version=True,
 
     packages=find_packages(exclude=['test']),
     install_requires=[],
 
-    extras_require={
-    },
+    extras_require={},
 
     package_data={
         'scopelist': ['VERSION.txt'],
     },
 
-    entry_points={
-    },
+    entry_points={},
 )
