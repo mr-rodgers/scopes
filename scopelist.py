@@ -51,6 +51,14 @@ A ScopeList in fact works like any immutable sequence.
 >>> list(ScopeList(['user/emails+r', 'user/repo+aaaaa']))
 ['user/emails', 'user/repo+a']
 
+They can be parsed directly from strings too
+
+>>> ScopeList.from_string("user/emails+r   user/emails+n")
+ScopeList(['user/emails', 'user/emails+n'])
+
+>>> ScopeList.from_string("user/emails+r:user/emails+n", item_sep=":")
+ScopeList(['user/emails', 'user/emails+n'])
+
 Permissions
 ~~~~~~~~~~~
 
@@ -151,3 +159,9 @@ True
                 for item in self._items
             )
         )
+
+    @classmethod
+    def from_string(cls, s, item_sep=" ", **args):
+        """Get a new ScopeList from a string value"""
+        items = [item for item in s.split(item_sep) if item]
+        return cls(items, **args)
