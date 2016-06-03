@@ -1,7 +1,7 @@
 scopelist
 =========
 
-|build-status| |license| |pypi|
+|build-status| |license| |coveralls| |pypi|
 
 *scopelist* exposes the ``ScopeList`` class, a container type intended to
 simplify checking authorization scope.
@@ -111,7 +111,7 @@ The child separator can also be changed:
 True
 
 .. |build-status| image:: https://travis-ci.org/te-je/scopelist.svg?branch=develop
-    :target: https://travis-ci.org/te-je/scopelist
+    :target: https://travis-ci.org/te-je/scopelist?branch=develop
     :alt: build status
     :scale: 100%
 
@@ -123,3 +123,6 @@ True
 .. |pypi| image:: https://img.shields.io/pypi/v/nine.svg?maxAge=2592000
     :target: https://pypi.python.org/pypi/scopelist
     :scale: 100%
+
+.. |coveralls| image:: https://coveralls.io/repos/github/te-je/scopelist/badge.svg?branch=develop
+    :target: https://coveralls.io/github/te-je/scopelist?branch=develop

@@ -10,6 +10,7 @@ python:
     - "nightly"
 install:
     - "pip install tox"
+    - "pip install coveralls"
 script: 
     - "tox -e py -e flake8"
 matrix:
@@ -18,3 +19,5 @@ matrix:
         - python: nightly
         - python: pypy
         - python: pypy3
+after_success:
+    coveralls
