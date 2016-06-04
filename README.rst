@@ -43,6 +43,10 @@ A ScopeList in fact works like any immutable sequence.
 'user/repo+a'
 >>> list(ScopeList(['user/emails+r', 'user/repo+aaaaa']))
 ['user/emails', 'user/repo+a']
+>>> ['foo/bar', 'foo/baz'] in ScopeList.from_string('foo')
+True
+>>> ['foo/bar', 'foo/baz', 'extra'] in ScopeList(['foo', 'bar'])
+False
 
 They can be parsed directly from strings too
 
