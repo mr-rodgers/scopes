@@ -47,7 +47,7 @@ setup(
     setup_requires=['setuptools_scm'],
     use_scm_version=True,
 
-    packages=find_packages(exclude=['test']),
+    py_modules=['scopelist'],
     install_requires=[],
 
     extras_require={},
