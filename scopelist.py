@@ -2,9 +2,9 @@ import sys
 
 from collections import namedtuple
 if sys.version_info < (3, 0):
-    from collections import Sequence
+    from collections import Iterable, Sequence
 else:
-    from collections.abc import Sequence
+    from collections.abc import Iterable, Sequence
 
 
 __all__ = ['ScopeList']
@@ -41,6 +41,10 @@ class ScopeList(Sequence):
     ScopeList(['user/emails'])
     >>> 'user/emails' in ScopeList(['user/emails'])
     True
+    >>> ['foo/bar', 'foo/baz'] in ScopeList.from_string('foo')
+    True
+    >>> ['foo/bar', 'foo/baz', 'extra'] in ScopeList(['foo', 'bar'])
+    False
 
     A ScopeList in fact works like any immutable sequence.
 
@@ -131,6 +135,9 @@ class ScopeList(Sequence):
         )
 
     def __contains__(self, item):
+        if not isinstance(item, str) and isinstance(item, Iterable):
+            return all(o in self for o in item)
+
         _item = _ScopeItem(item, self.child_sep, self.mode_sep,
                            self.default_mode)
 
