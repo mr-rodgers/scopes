@@ -52,9 +52,5 @@ setup(
 
     extras_require={},
 
-    package_data={
-        'scopelist': ['VERSION.txt'],
-    },
-
     entry_points={},
 )
