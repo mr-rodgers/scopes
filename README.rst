@@ -3,7 +3,7 @@ scopelist
 
 |build-status| |license| |coveralls| |pypi|
 
-*scopelist* exposes the ``ScopeList`` class, a container type intended to
+*scopes* exposes the ``Set`` class, a container type intended to
 simplify checking authorization scope.
 
 Installation
@@ -25,36 +25,35 @@ Dependencies
 Usage
 -----
 
-ScopeList implements the ``__contains__`` magic method, making it easy
-to check if a particular scope and permission is expressed a list of
+scopes.Set implements the ``__contains__`` magic method, making it easy
+to check if a particular scope and permission is expressed in a set of
 scopes.
 
->>> from scopelist import ScopeList
->>> ScopeList(['user/emails+r'])
-ScopeList(['user/emails'])
->>> 'user/emails' in ScopeList(['user/emails'])
+>>> from scopelist import Set
+>>> Set(['user/emails+r'])
+Set(['user/emails'])
+>>> 'user/emails' in Set(['user/emails'])
 True
-
-A ScopeList in fact works like any immutable sequence.
-
->>> len(ScopeList(['user/emails', 'user/repo']))
-2
->>> ScopeList(['user/emails+r', 'user/repo+aaaaa'])[1]
-'user/repo+a'
->>> list(ScopeList(['user/emails+r', 'user/repo+aaaaa']))
-['user/emails', 'user/repo+a']
->>> ['foo/bar', 'foo/baz'] in ScopeList.from_string('foo')
+>>> ('foo/bar', 'foo/baz') <= Set('foo')
 True
->>> ['foo/bar', 'foo/baz', 'extra'] in ScopeList(['foo', 'bar'])
+>>> ['foo/bar', 'foo/baz', 'extra'] <= Set(['foo', 'bar'])
 False
+>>> Set(['foo', 'bar']) >= ('foo/bar', 'foo/baz')
+True
 
-They can be parsed directly from strings too
+A Set in fact works almost like any set type.
 
->>> ScopeList.from_string("user/emails+r   user/emails+n")
-ScopeList(['user/emails', 'user/emails+n'])
+>>> len(Set(['user/emails', 'user/repo']))
+2
+>>> list(Set(['user/emails+r', 'user/repo+aaaaa']).formatted())
+['user/emails', 'user/repo+a']
 
->>> ScopeList.from_string("user/emails+r:user/emails+n", item_sep=":")
-ScopeList(['user/emails', 'user/emails+n'])
+They can be quickly parsed from strings too.
+
+>>> Set("user/emails+r user/emails+n")
+Set(['user/emails', 'user/emails+n'])
+
+This method uses a single space as a separator.
 
 Permissions
 ~~~~~~~~~~~
@@ -65,35 +64,35 @@ default) is interpreted as a permission. When checking for an item
 in the scope list, both its value and permission must match at least
 one item in the list.
 
->>> 'user/emails+a' in ScopeList(['user/emails'])
+>>> 'user/emails+a' in Set(['user/emails'])
 False
->>> 'user/emails+a' in ScopeList(['user/emails+a'])
+>>> 'user/emails+a' in Set(['user/emails+a'])
 True
 
 Indicate multiple permissions in a scope list item by including more than
 one letter after the ``+`` symbol. Duplicate permissions are ignored.
 
->>> 'user/repo+w' in ScopeList(['user/repo+abcd', 'user/repo+rw'])
+>>> 'user/repo+w' in Set(['user/repo+abcd', 'user/repo+rw'])
 True
 
 Permissions are totally arbitrary, except that ``+r`` is assumed by
 default when no permissions are explicitly given.
 
->>> 'user/emails+r' in ScopeList(['user/emails'])
+>>> 'user/emails+r' in Set(['user/emails'])
 True
 
 You can change the default permissions to whatever you like.
 
->>> 'user/emails+n' in ScopeList(['user/emails'], default_mode='n')
+>>> 'user/emails+n' in Set(['user/emails'], default_permissions='n')
 True
->>> 'user/emails+q' in ScopeList(['user/emails'], default_mode='pq')
+>>> 'user/emails+q' in Set(['user/emails'], default_permissions='pq')
 True
->>> 'user/emails+p' in ScopeList(['user/emails'], default_mode='pq')
+>>> 'user/emails+p' in Set(['user/emails'], default_permissions='pq')
 True
 
 The permissions separator is also configurable.
 
->>> 'user/emails|r' in ScopeList(['user/emails'], mode_sep='|')
+>>> 'user/emails|r' in Set(['user/emails'], permission_sep='|')
 True
 
 Parents
@@ -102,16 +101,16 @@ Parents
 The ``/`` symbol is the default child separator. Parent scope items
 automatically 'contain' child items in the scope list.
 
->>> 'user/emails+r' in ScopeList(['user'])
+>>> 'user/emails+r' in Set(['user'])
 True
->>> 'user/emails+w' in ScopeList(['user'])
+>>> 'user/emails+w' in Set(['user'])
 False
->>> 'user/emails+rw' in ScopeList(['user+w', 'user/emails+r'])
+>>> 'user/emails+rw' in Set(['user+w', 'user/emails+r'])
 True
 
 The child separator can also be changed:
 
->>> 'user:emails+r' in ScopeList(['user'], child_sep=':')
+>>> 'user:emails+r' in Set(['user'], child_sep=':')
 True
 
 .. |build-status| image:: https://travis-ci.org/te-je/scopelist.svg?branch=develop
