@@ -1,4 +1,4 @@
-scopelist
+scopes
 =========
 
 |build-status| |license| |coveralls| |pypi|
@@ -9,9 +9,9 @@ simplify checking authorization scope.
 Installation
 ------------
 
-You can install scopelist from PyPi::
+You can install scopes from PyPi::
 
-    > pip install scopelist
+    > pip install scopes
 
 That should install all the dependencies for you. If you want to install
 directly from source, clone the git repository and run the standard
@@ -29,7 +29,7 @@ scopes.Set implements the ``__contains__`` magic method, making it easy
 to check if a particular scope and permission is expressed in a set of
 scopes.
 
->>> from scopelist import Set
+>>> from scopes import Set
 >>> Set(['user/emails+r'])
 Set(['user/emails'])
 >>> 'user/emails' in Set(['user/emails'])
@@ -113,19 +113,19 @@ The child separator can also be changed:
 >>> 'user:emails+r' in Set(['user'], child_sep=':')
 True
 
-.. |build-status| image:: https://travis-ci.org/te-je/scopelist.svg?branch=develop
-    :target: https://travis-ci.org/te-je/scopelist?branch=develop
+.. |build-status| image:: https://travis-ci.org/te-je/scopes.svg?branch=develop
+    :target: https://travis-ci.org/te-je/scopes?branch=develop
     :alt: build status
     :scale: 100%
 
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://raw.githubusercontent.com/te-je/scopelist/develop/LICENSE.rst
+    :target: https://raw.githubusercontent.com/te-je/scopes/develop/LICENSE.rst
     :alt: License
     :scale: 100%
 
-.. |pypi| image:: https://img.shields.io/pypi/v/scopelist.svg?maxAge=2592000
-    :target: https://pypi.python.org/pypi/scopelist
+.. |pypi| image:: https://img.shields.io/pypi/v/scopes.svg?maxAge=2592000
+    :target: https://pypi.python.org/pypi/scopes
     :scale: 100%
 
-.. |coveralls| image:: https://coveralls.io/repos/github/te-je/scopelist/badge.svg?branch=develop
-    :target: https://coveralls.io/github/te-je/scopelist?branch=develop
+.. |coveralls| image:: https://coveralls.io/repos/github/te-je/scopes/badge.svg?branch=develop
+    :target: https://coveralls.io/github/te-je/scopes?branch=develop

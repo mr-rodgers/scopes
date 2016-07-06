@@ -59,7 +59,7 @@ class Set(AbstractSet):
     to check if a particular scope and permission is expressed in a set of
     scopes.
 
-    >>> from scopelist import Set
+    >>> from scopes import Set
     >>> Set(['user/emails+r'])
     Set(['user/emails'])
     >>> 'user/emails' in Set(['user/emails'])

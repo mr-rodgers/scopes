@@ -13,7 +13,7 @@ def read(relpath):
         return f.read().replace("\r\n", "\n")
 
 setup(
-    name='scopelist',
+    name='scopes',
 
     description='A container class for authorization scopes',
     long_description="\n\n".join([
@@ -22,7 +22,7 @@ setup(
         read("LICENSE.rst")
     ]),
 
-    url='https://github.com/te-je/scopelist',
+    url='https://github.com/te-je/scopes',
 
     author='Te-jé Rodgers',
     author_email='tjd.rodgers@gmail.com',
@@ -47,7 +47,7 @@ setup(
     setup_requires=['setuptools_scm'],
     use_scm_version=True,
 
-    py_modules=['scopelist'],
+    py_modules=['scopes'],
     install_requires=[],
 
     extras_require={},
